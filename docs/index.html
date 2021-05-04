@@ -44,6 +44,15 @@
         #abstract p {
             text-align: justify;
         }
+
+        #results .label {
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+        }
+        #results h3, #results h5 {
+            margin-top: 2em;
+        }
     </style>
 </head>
 
@@ -67,10 +76,10 @@
                     <a class="nav-link" href="#video" target="_self">Video</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#paper" target="_self">Paper</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#results" target="_self">Results</a>
+                    </li_self>
+                <li class="nav-item">
+                    <a class="nav-link" href="#acknowledgements" target="_self">Acknowledgements</a>
                     </li_self>
             </ul>
         </div>
@@ -80,7 +89,7 @@
 
         <h1><b>DiSeCT</b>: A Differentiable Simulation Engine <br /> for Autonomous Robotic Cutting</h1>
 
-        <h2>Under Review at Robotics: Science and Systems (2021)</h2>
+        <h2>Under Review at RSS 2021</h2>
 
         <div class="row authors">
             <div class="col">
@@ -124,6 +133,44 @@
         </div>
     </div>
 
+    <div class="container" id="abstract">
+        <div class="row">
+            <h2>Abstract</h2>
+            <p class="col-sm-10 fs-5">
+                Robotic cutting of soft materials is critical for applications such as food processing, household
+                automation, and surgical manipulation. As in other areas of robotics, simulators can facilitate
+                controller
+                verification, policy learning, and dataset generation. Moreover, <em>differentiable</em> simulators can
+                enable gradient-based optimization, which is invaluable for calibrating simulation parameters and
+                optimizing
+                controllers. In this work, we present DiSeCT - the first differentiable simulator for cutting soft
+                materials. The simulator augments the finite element method (FEM) with a continuous contact model based
+                on
+                signed distance fields (SDF), as well as a continuous damage model that inserts springs on opposite
+                sides of
+                the cutting plane and allows them to weaken until zero stiffness to model crack formation. Through
+                various
+                experiments, we evaluate the performance of the simulator. We first show that the simulator can be
+                calibrated to match resultant forces and deformation fields from a state-of-the-art commercial solver
+                and
+                real-world cutting datasets, with generality across cutting velocities and object instances. We then
+                show
+                that Bayesian inference can be performed efficiently by leveraging the differentiability of the
+                simulator,
+                estimating posteriors over hundreds of parameters in a fraction of the time of black-box methods.
+                Finally,
+                we illustrate that control parameters in the simulation can be optimized to minimize cutting forces via
+                lateral slicing motions.
+            </p>
+            <div class="card col align-self-center border-0">
+                <img src="paper-thumbnail.png" class="card-img-top" alt="DiSeCT paper" />
+                <div class="card-body" align="center">
+                    <h5 class="card-title"><a href="#">Paper on ArXiv</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container" id="summary">
         <div class="row">
             <video autoplay muted loop class="col">
@@ -137,18 +184,17 @@
         </div>
 
         <div class="row">
-
-
             <div class="col">
                 <p class="lead">
-                    We present a differentiable simulator for robotic cutting of biomaterials.
-                    Based on the Finite Element Method (FEM), soft materials are simulated
+                    Knife force simulation of cutting a potato. DiSeCT allows the efficient calibration of simulation
+                    parameters to match actual force measurements from a real robot cutting biomaterials.
                 </p>
             </div>
             <div class="col">
                 <p class="lead">
-                    We present a differentiable simulator for robotic cutting of biomaterials.
-                    Based on the Finite Element Method (FEM), soft materials are simulated
+                    Deformable objects are simulated via the Finite Element Method (FEM). To simulate crack propagation
+                    and damage, we insert springs (shown in cyan) between the cut elements of the mesh which are
+                    weakened as the knife exerts contact forces.
                 </p>
             </div>
         </div>
@@ -165,35 +211,79 @@
         </div>
     </div>
 
-    <div class="container" id="abstract">
-        <h2>Abstract</h2>
-        <p class="fs-5">
-            Robotic cutting of soft materials is critical for applications such as food processing, household
-            automation, and surgical manipulation. As in other areas of robotics, simulators can facilitate controller
-            verification, policy learning, and dataset generation. Moreover, <em>differentiable</em> simulators can
-            enable gradient-based optimization, which is invaluable for calibrating simulation parameters and optimizing
-            controllers. In this work, we present DiSeCT - the first differentiable simulator for cutting soft
-            materials. The simulator augments the finite element method (FEM) with a continuous contact model based on
-            signed distance fields (SDF), as well as a continuous damage model that inserts springs on opposite sides of
-            the cutting plane and allows them to weaken until zero stiffness to model crack formation. Through various
-            experiments, we evaluate the performance of the simulator. We first show that the simulator can be
-            calibrated to match resultant forces and deformation fields from a state-of-the-art commercial solver and
-            real-world cutting datasets, with generality across cutting velocities and object instances. We then show
-            that Bayesian inference can be performed efficiently by leveraging the differentiability of the simulator,
-            estimating posteriors over hundreds of parameters in a fraction of the time of black-box methods. Finally,
-            we illustrate that control parameters in the simulation can be optimized to minimize cutting forces via
-            lateral slicing motions.
-        </p>
-    </div>
-
     <div class="container" id="results">
         <h2>Additional Results</h2>
+
+        <div class="row justify-content-md-center">
+            <video autoplay muted loop class="img-fluid w-75">
+                <source src="real_estimation/real_apple_progress.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="lead w-75">Evolution of the knife force profile while the simulation parameters are calibrated via
+                gradient-based optimization. The ground-truth trajectory has been obtained from a real force sensor
+                attached to a robot cutting a real apple.</p>
+        </div>
+
 
         <h3>Mesh Generalization via Optimal Transport</h3>
 
         <p class="lead">We use Optimal Transport to transfer optimized cutting spring parameters between different
             meshes of the same material. In this example, the parameters are transferred from a prism mesh to a
-            half-cylinder mesh with potato material properties.</p>
+            half-cylinder mesh with potato material properties. Groundtruth knife forces stem from a state-of-the-art
+            commercial simulator.</p>
+
+        <div class="row">
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd.png" />
+                <p>Knife force profile of the transported cutting spring parameters (orange) against the ground-truth
+                    knife force profile (black) from a commercial simulator on a half-cylinder mesh with potato material
+                    properties.</p>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_cost.png" />
+                <p>Cost matrix (pair-wise squared distances) between 2D spring coordinates from the source mesh (prism)
+                    and the target mesh (cylinder).</p>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_metric_emd.png" />
+                <p>Correspondences between source and target cutting spring coordinates found by Optimal Transport using
+                    the Earth Mover's Distance metric.</p>
+            </div>
+        </div>
+
+        <h5>Transported cutting spring parameters:</h5>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Cutting spring stiffness</p>
+                <img class="img-fluid"
+                    src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_cut_spring_ke.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact normal force stiffness</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_ke.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Cutting spring softness</p>
+                <img class="img-fluid"
+                    src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_cut_spring_softness.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact friction coefficient</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_mu.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" align="center">
+                <p class="label">Contact damping coefficient</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_kd.png" />
+            </div>
+            <div class="col" align="center">
+                <p class="label">Contact friction stiffness</p>
+                <img class="img-fluid" src="mesh_transfer/ansys_potato_prism_to_cylinder_emd_transfer_sdf_kf.png" />
+            </div>
+        </div>
 
         <h3>Cutting Motion Optimization</h3>
 
@@ -209,29 +299,40 @@
                     <source src="motions/initial.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <p align="center">Initial trajectory (before optimization)</p>
+                <p align="center"><b>Initial trajectory (before optimization)</b></p>
             </div>
             <div class="col">
                 <video autoplay muted loop class="img-fluid">
                     <source src="motions/unconstrained.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <p align="center">Unconstrained optimization</p>
+                <p align="center"><b>Unconstrained optimization</b></p>
             </div>
             <div class="col">
                 <video autoplay muted loop class="img-fluid">
                     <source src="motions/constrained.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <p align="center">Constrained optimization</p>
+                <p align="center"><b>Constrained optimization</b></p>
             </div>
         </div>
 
     </div>
 
+    <div class="container" id="acknowledgements">
+        <h2>Acknowledgements</h2>
+
+        <p class="lead">We thank <a href="http://web.cs.iastate.edu/~jia/">Yan-Bin Jia</a> and <a
+                href="https://www.linkedin.com/in/prajjwalprem">Prajjwal Jamdagni</a> for kindly providing us a
+            dataset of real-world cutting trajectories which we used throughout our experiments. Be sure to also check
+            out their <a href="http://robotics.cs.iastate.edu/ResearchRoboticCutting.shtml">research on robotic
+                cutting</a>!</p>
+        <p class="lead">Part of the research was supported by a Google Ph.D. Fellowship.</p>
+    </div>
+
     <div class="bg-light">
         <div class="container" align="right" style="padding:40px 0">
-            Last updated on May 1, 2021.
+            Last updated on May 3, 2021.
         </div>
     </div>
 
