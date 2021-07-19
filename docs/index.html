@@ -15,7 +15,8 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DiSECt - Differentiable Cutting Simulator">
-    <meta name="twitter:description" content="A differentiable simulator for robotic cutting, enabling efficient inference of simulation parameters, and optimization of cutting motions.">
+    <meta name="twitter:description"
+        content="A differentiable simulator for robotic cutting, enabling efficient inference of simulation parameters, and optimization of cutting motions.">
     <meta name="twitter:creator" content="@eric_heiden">
     <meta name="twitter:url" content="https://diff-cutting-sim.github.io">
     <meta name="twitter:image:src" content="https://diff-cutting-sim.github.io/teaser.jpg">
@@ -78,6 +79,14 @@
         #results h5 {
             margin-top: 2em;
         }
+
+        .btn {
+            width: 75%;
+        }
+
+        .actions .col {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -102,10 +111,13 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#results" target="_self">Results</a>
-                    </li_self>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#acknowledgements" target="_self">Acknowledgements</a>
-                    </li_self>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#outlook" target="_self">Outlook</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -170,7 +182,8 @@
     <div class="container" id="abstract">
         <div class="row">
             <h2>Abstract</h2>
-            <p class="col-sm-10 fs-5">
+            <!-- <p class="col-sm-10 fs-5"> -->
+            <p class="col">
                 Robotic cutting of soft materials is critical for applications such as food processing, household
                 automation, and surgical manipulation. As in other areas of robotics, simulators can facilitate
                 controller
@@ -196,13 +209,48 @@
                 we illustrate that control parameters in the simulation can be optimized to minimize cutting forces via
                 lateral slicing motions.
             </p>
-            <div class="card col align-self-center border-0">
+            <!-- <div class="card col align-self-center border-0">
                 <a href="https://arxiv.org/abs/2105.12244">
                     <img src="paper-thumbnail.png" class="card-img-top" alt="DiSECt paper" />
                     <div class="card-body" align="center">
                         <h5 class="card-title">Paper on ArXiv</h5>
                     </div>
                 </a>
+            </div> -->
+        </div>
+
+        <div class="row actions">
+            <div class="col"><a href="https://arxiv.org/abs/2105.12244" target="_blank"
+                    class="btn btn-primary ">Paper</a></div>
+            <div class="col"><a href="#" class="btn btn-primary col">Code (coming soon!)</a></div>
+            <div class="col"><a
+                    href="https://developer.nvidia.com/blog/nvidia-research-disect-a-differentiable-simulation-engine-for-autonomous-robotic-cutting/"
+                    target="_blank" class="btn btn-primary col">Blog post</a></div>
+            <div class="col"><a href="#" data-bs-toggle="modal" data-bs-target="#citationModal"
+                    class="btn btn-primary col">Citation</a></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalTitle">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="citationModalLongTitle">Citation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre>
+@INPROCEEDINGS{heiden2021disect, 
+    AUTHOR    = {Eric Heiden AND Miles Macklin AND Yashraj S Narang AND Dieter Fox AND Animesh Garg AND Fabio Ramos}, 
+    TITLE     = {{DiSECt: A Differentiable Simulation Engine for Autonomous Robotic Cutting}}, 
+    BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
+    YEAR      = {2021}, 
+    ADDRESS   = {Virtual}, 
+    MONTH     = {July}, 
+    DOI       = {10.15607/RSS.2021.XVII.067} 
+}
+                    </pre>
+                </div>
             </div>
         </div>
     </div>
@@ -244,7 +292,7 @@
         <h2>Video</h2>
         <div class="row justify-content-md-center">
             <div class="ratio ratio-16x9 w-75">
-                <iframe src="https://www.youtube.com/embed/zUjdNR6kpfI" title="YouTube video player" frameborder="0"
+                <iframe src="https://www.youtube.com/embed/bN4yqHhfAfQ" title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
@@ -386,7 +434,7 @@
 
     <div class="bg-light">
         <div class="container" align="right" style="padding:40px 0">
-            Last updated on July 17, 2021
+            Last updated on July 19, 2021
         </div>
     </div>
 
